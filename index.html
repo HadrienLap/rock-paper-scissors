@@ -12,7 +12,7 @@
         game()
 
         function game(){
-            // Variables for the score calculation
+            // Variables for the score calculation & round count
             let playerScore = 0;
             let computerScore = 0;
             let roundCount = 1;
@@ -22,6 +22,9 @@
 
             // Play the game 5 times
             for (let i = 0; i < 5; i++ ) {
+                
+                // Lign separation between rounds
+                console.log("\n");
 
                 // Display the current round number: 
                 console.log(`Round ${roundCount}`);
@@ -39,9 +42,15 @@
                 } else if (roundResult.includes("You loose")){
                     computerScore ++;
                 }
-                // Display the live score count
-                console.log(`The score is ${playerScore} for you and ${computerScore} for the computer!`);
+                // Display the live score count unless it is last round
+                while(roundCount < 6){
+                    console.log(`The score is ${playerScore} for you and ${computerScore} for the computer!`);
+                    break;
+                }
             }
+
+            // Lign separation before final score
+            console.log("\n");
 
             //Final result display
             if (playerScore > computerScore){
@@ -55,7 +64,7 @@
 
         // Computer random pick and return his choice
         function computerPlay () {
-            
+
             // Computer randomly pick a number from 0 to 2, and return the computerRandomeChoice
             // 0 = rock, 1 = paper, 2 = scissors
             const computerRandomNumber = Math.floor(Math.random() * 3);
@@ -85,9 +94,9 @@
                 playerChoiceCapitalized = playerChoiceLowerCase.charAt(0).toUpperCase() + playerChoiceLowerCase.slice(1);            
             
                 if (playerChoiceCapitalized == "Rock" ||
-                     playerChoiceCapitalized == "Paper" ||
-                     playerChoiceCapitalized == "Scissors") {
-                         break;
+                    playerChoiceCapitalized == "Paper" ||
+                    playerChoiceCapitalized == "Scissors") {
+                        break;
                 } else {
                     console.log(`Please enter a valid choice`);
                 }
@@ -113,10 +122,6 @@
             }
             return result;
         }
-
     </script>
-
-
-
 </body>
 </html>
