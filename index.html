@@ -8,17 +8,37 @@
 <body>
     <script>
 
-        
+        // Play the game 5 times, display the result of each rounds, and display the final winner
+        function game(){
+            // Variables for the score calculation
+            let playerScore = 0;
+            let computerScore = 0;
+  
+            console.log("Compete against the computer in a 5 rounds rock paper scissors battle!");
 
-
-        // Play the game 5 times and display the result of each rounds
-        function game () {
             for (let i = 0; i < 5; i++ ) {
-                playRound(playerPlay(), computerPlay())
-                console.log(playRound(playerSelection, computerSelection))
-            }
-    }
+                let roundResult = playRound(playerPlay(), computerPlay());
+                console.clear();
+                console.log(roundResult);
 
+                // Score calculation and display each round
+                if (roundResult.includes("You win")){
+                    playerScore ++;
+                } else if (roundResult.includes("You loose")){
+                    computerScore ++;
+                }
+                console.log(`The score is ${playerScore} for you and ${computerScore} for the computer!`);
+            }
+
+            //Final result display
+            if (playerScore > computerScore){
+                console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you won! :)`);
+            } else if (computerScore > playerScore){
+                console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you lost :(`);
+            } else {
+                console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, it's a tie :|`);
+            }
+        }
 
         // Computer random pick and return his choice
         function computerPlay () {
@@ -30,11 +50,11 @@
             let computerChoice = null;
 
             if (computerRandomNumber == 0) {
-                computerChoice = "rock";
+                computerChoice = "Rock";
             } else if (computerRandomNumber == 1) {
-                computerChoice = "paper";
+                computerChoice = "Paper";
             } else {
-                computerChoice = "scissors";
+                computerChoice = "Scissors";
             }
             console.log(`The computer choice is ${computerChoice}`);
             return computerChoice;
@@ -42,28 +62,34 @@
 
         // Prompt ask the player choice and return its answer
         function playerPlay (){
-            let playerChoice = window.prompt("Choose rock, paper or scissors");
-            console.log(`You choose ${playerChoice}`);
-            return playerChoice;
+            let playerChoice = window.prompt("Choose Rock, Paper or Scissors");
+            
+            //Transformation of the player choice to a Capitalized format
+            const playerChoiceLowerCase = playerChoice.toLowerCase(); 
+            const playerChoiceCapitalized = playerChoiceLowerCase.charAt(0).toUpperCase() + playerChoiceLowerCase.slice(1);
+            
+            // Console log of the player's choice
+            console.log(`You choose ${playerChoiceCapitalized}`);
+            return playerChoiceCapitalized;
         }
 
         // Play a round and return the result
         function playRound(playerSelection, computerSelection) {
             let result = null;
-            const playerSelectionLowerCase = playerSelection.toLowerCase(); 
-
-            if (playerSelectionLowerCase == computerSelection){
+            
+            if (playerSelection == computerSelection){
                 result = `You both played ${computerSelection}, it's a draw!`;  
-            } else if ((playerSelectionLowerCase == "paper" && computerSelection == "rock") ||
-                       (playerSelectionLowerCase == "rock" && computerSelection == "scissors") ||
-                       (playerSelectionLowerCase == "scissors" && computerSelection == "paper")) { 
-                result = `You win! ${playerSelectionLowerCase} beats ${computerSelection}`;      
+            } else if ((playerSelection == "Paper" && computerSelection == "Rock") ||
+                       (playerSelection == "Rock" && computerSelection == "Scissors") ||
+                       (playerSelection == "Scissors" && computerSelection == "Paper")) { 
+                result = `You win! ${playerSelection} beats ${computerSelection}`;      
             } else {
-                result = `You loose! ${computerSelection} beats ${playerSelectionLowerCase}`;  
+                result = `You loose! ${computerSelection} beats ${playerSelection}`;  
             }
             return result;
         }
-         
+
+
     </script>
 
 
