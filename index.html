@@ -8,8 +8,17 @@
 <body>
     <script>
 
-        // Function call to play a round and display the result
-        playRound(playerPlay(), computerPlay())
+        
+
+
+        // Play the game 5 times and display the result of each rounds
+        function game () {
+            for (let i = 0; i < 5; i++ ) {
+                playRound(playerPlay(), computerPlay())
+                console.log(playRound(playerSelection, computerSelection))
+            }
+    }
+
 
         // Computer random pick and return his choice
         function computerPlay () {
@@ -27,14 +36,14 @@
             } else {
                 computerChoice = "scissors";
             }
-            console.log(computerChoice);
+            console.log(`The computer choice is ${computerChoice}`);
             return computerChoice;
         }
 
-        // Prompt ask the player choice and return its value
+        // Prompt ask the player choice and return its answer
         function playerPlay (){
             let playerChoice = window.prompt("Choose rock, paper or scissors");
-            console.log(playerChoice);
+            console.log(`You choose ${playerChoice}`);
             return playerChoice;
         }
 
@@ -44,32 +53,17 @@
             const playerSelectionLowerCase = playerSelection.toLowerCase(); 
 
             if (playerSelectionLowerCase == computerSelection){
-                result = "draw";  
+                result = `You both played ${computerSelection}, it's a draw!`;  
             } else if ((playerSelectionLowerCase == "paper" && computerSelection == "rock") ||
                        (playerSelectionLowerCase == "rock" && computerSelection == "scissors") ||
                        (playerSelectionLowerCase == "scissors" && computerSelection == "paper")) { 
-                result = "win";      
+                result = `You win! ${playerSelectionLowerCase} beats ${computerSelection}`;      
             } else {
-                result = "loose";
+                result = `You loose! ${computerSelection} beats ${playerSelectionLowerCase}`;  
             }
             return result;
         }
-        
-
-        // Display the result
-        // console.log(`It's a draw! You both played ${computerSelection} !`)
-
-        // Round counter and result display
-        function game () {
-
-            for (let i = 0, i < 5, i++ ) {
-                
-                
-                console.log(); // Resultat
-            }
-            
-        }
-        
+         
     </script>
 
 
