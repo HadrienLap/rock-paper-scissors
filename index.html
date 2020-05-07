@@ -8,25 +8,38 @@
 <body>
     <script>
 
-        // Play the game 5 times, display the result of each rounds, and display the final winner
+        // Start a game at refresh
+        game()
+
         function game(){
             // Variables for the score calculation
             let playerScore = 0;
             let computerScore = 0;
-  
+            let roundCount = 1;
+            
+            // Welcome message
             console.log("Compete against the computer in a 5 rounds rock paper scissors battle!");
 
+            // Play the game 5 times
             for (let i = 0; i < 5; i++ ) {
+
+                // Display the current round number: 
+                console.log(`Round ${roundCount}`);
+
+                //Round count
+                roundCount ++; 
+
+                // Play a round and display its result
                 let roundResult = playRound(playerPlay(), computerPlay());
-                console.clear();
                 console.log(roundResult);
 
-                // Score calculation and display each round
+                // Score calculation
                 if (roundResult.includes("You win")){
                     playerScore ++;
                 } else if (roundResult.includes("You loose")){
                     computerScore ++;
                 }
+                // Display the live score count
                 console.log(`The score is ${playerScore} for you and ${computerScore} for the computer!`);
             }
 
@@ -88,8 +101,7 @@
             }
             return result;
         }
-
-
+        
     </script>
 
 
