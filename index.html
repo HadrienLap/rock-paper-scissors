@@ -73,14 +73,26 @@
             return computerChoice;
         }
 
-        // Prompt ask the player choice and return its answer
+        // Player function, return player's choice capitalized
         function playerPlay (){
-            let playerChoice = window.prompt("Choose Rock, Paper or Scissors");
+
+            while (true) {
+                // Prompt the player for his choice
+                let playerChoice = window.prompt("Choose Rock, Paper or Scissors");
+                
+                //Transformation of the player choice to a Capitalized format
+                let playerChoiceLowerCase = playerChoice.toLowerCase(); 
+                playerChoiceCapitalized = playerChoiceLowerCase.charAt(0).toUpperCase() + playerChoiceLowerCase.slice(1);            
             
-            //Transformation of the player choice to a Capitalized format
-            const playerChoiceLowerCase = playerChoice.toLowerCase(); 
-            const playerChoiceCapitalized = playerChoiceLowerCase.charAt(0).toUpperCase() + playerChoiceLowerCase.slice(1);
-            
+                if (playerChoiceCapitalized == "Rock" ||
+                     playerChoiceCapitalized == "Paper" ||
+                     playerChoiceCapitalized == "Scissors") {
+                         break;
+                } else {
+                    console.log(`Please enter a valid choice`);
+                }
+            }
+           
             // Console log of the player's choice
             console.log(`You choose ${playerChoiceCapitalized}`);
             return playerChoiceCapitalized;
@@ -101,7 +113,7 @@
             }
             return result;
         }
-        
+
     </script>
 
 
