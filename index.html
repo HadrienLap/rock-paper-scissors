@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // Function call to play a round and display the result
+        playRound(playerPlay(), computerPlay())
+
+        // Computer random pick and return his choice
+        function computerPlay () {
+            
+            // Computer randomly pick a number from 0 to 2, and return the computerRandomeChoice
+            // 0 = rock, 1 = paper, 2 = scissors
+            const computerRandomNumber = Math.floor(Math.random() * 3);
+            
+            let computerChoice = null;
+
+            if (computerRandomNumber == 0) {
+                computerChoice = "rock";
+            } else if (computerRandomNumber == 1) {
+                computerChoice = "paper";
+            } else {
+                computerChoice = "scissors";
+            }
+            return computerChoice;  
+        }
+
+        // Player pick asked by a prompt
+        function playerPlay (){
+            let playerChoice = window.prompt("Choose rock, paper or scissors");
+            return playerChoice;
+        }
+
+
+        // Display the result of the round
+        function playRound(playerSelection, computerSelection) {
+
+            console.log(playerSelection)
+            console.log(computerSelection)
+
+            if (playerSelection.toLowerCase() == computerSelection){
+                console.log(`It's a draw! You both played ${computerSelection} !`)
+            }
+        }
+
+
+        // Round counter and result display
+        function game () {
+
+            for (let i = 0, i < 5, i++ ) {
+                
+                
+                console.log(); // Resultat
+            }
+            
+        }
+        
+    </script>
+
+
+
+</body>
+</html>
