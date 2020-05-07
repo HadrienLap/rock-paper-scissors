@@ -69,17 +69,17 @@
             // 0 = rock, 1 = paper, 2 = scissors
             const computerRandomNumber = Math.floor(Math.random() * 3);
             
-            let computerChoice = null;
-
-            if (computerRandomNumber == 0) {
-                computerChoice = "Rock";
-            } else if (computerRandomNumber == 1) {
-                computerChoice = "Paper";
-            } else {
-                computerChoice = "Scissors";
+            switch (computerRandomNumber){
+                case 0 : 
+                    console.log(`The computer chose Rock`);
+                    return "Rock";
+                case 1 : 
+                    console.log(`The computer chose Paper`);
+                    return "Paper";
+                case 2 :
+                    console.log(`The computer chose Scissors`);
+                    return "Scissors";
             }
-            console.log(`The computer choice is ${computerChoice}`);
-            return computerChoice;
         }
 
         // Player function, return player's choice capitalized
@@ -103,7 +103,7 @@
             }
            
             // Console log of the player's choice
-            console.log(`You choose ${playerChoiceCapitalized}`);
+            console.log(`You chose ${playerChoiceCapitalized}`);
             return playerChoiceCapitalized;
         }
 
@@ -112,7 +112,7 @@
             let result = null;
             
             if (playerSelection == computerSelection){
-                result = `You both played ${computerSelection}, it's a draw!`;  
+                result = `You both played ${computerSelection}, it's a draw!`;
             } else if ((playerSelection == "Paper" && computerSelection == "Rock") ||
                        (playerSelection == "Rock" && computerSelection == "Scissors") ||
                        (playerSelection == "Scissors" && computerSelection == "Paper")) { 
