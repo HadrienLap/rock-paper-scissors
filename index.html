@@ -27,27 +27,37 @@
             } else {
                 computerChoice = "scissors";
             }
-            return computerChoice;  
+            console.log(computerChoice);
+            return computerChoice;
         }
 
-        // Player pick asked by a prompt
+        // Prompt ask the player choice and return its value
         function playerPlay (){
             let playerChoice = window.prompt("Choose rock, paper or scissors");
+            console.log(playerChoice);
             return playerChoice;
         }
 
-
-        // Display the result of the round
+        // Play a round and return the result
         function playRound(playerSelection, computerSelection) {
+            let result = null;
+            const playerSelectionLowerCase = playerSelection.toLowerCase(); 
 
-            console.log(playerSelection)
-            console.log(computerSelection)
-
-            if (playerSelection.toLowerCase() == computerSelection){
-                console.log(`It's a draw! You both played ${computerSelection} !`)
+            if (playerSelectionLowerCase == computerSelection){
+                result = "draw";  
+            } else if ((playerSelectionLowerCase == "paper" && computerSelection == "rock") ||
+                       (playerSelectionLowerCase == "rock" && computerSelection == "scissors") ||
+                       (playerSelectionLowerCase == "scissors" && computerSelection == "paper")) { 
+                result = "win";      
+            } else {
+                result = "loose";
             }
+            return result;
         }
+        
 
+        // Display the result
+        // console.log(`It's a draw! You both played ${computerSelection} !`)
 
         // Round counter and result display
         function game () {
