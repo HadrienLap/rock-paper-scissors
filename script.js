@@ -1,5 +1,5 @@
 // Start a game at refresh
-game()
+// game()
 
 function game(){
     // Variables for the score calculation & round count
