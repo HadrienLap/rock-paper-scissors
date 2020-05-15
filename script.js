@@ -1,55 +1,34 @@
-// Start a game at refresh
-// game()
+ // Welcome message
+ console.log("Click 'Start a new game' to compete against the computer. The first player to reach 3 point wins!");
+ 
+ // Start a game if user clicks "Start a new game"
+const start = document.querySelector('#start');
+start.onclick = () => {
+    game ();
+}
 
-function game(){
+
+
+function game () {
     // Variables for the score calculation & round count
     let playerScore = 0;
     let computerScore = 0;
     let roundCount = 1;
-    
-    // Welcome message
-    console.log("Compete against the computer in a 5 rounds rock paper scissors battle!");
 
-    // Play the game 5 times
-    for (let i = 0; i < 5; i++ ) {
+
+
+    // Player choose a weapon and play a round
+    console.log('Choose your weapon');
+
+    const weapons = document.querySelectorAll('.controls');
+
+    weapons.forEach(button => {
+        button.addEventListener('click', (e) => {
+        let roundResult = playRound(button.id, computerPlay());
         
-        // Lign separation between rounds
-        console.log("\n");
-
-        // Display the current round number: 
-        console.log(`Round ${roundCount}`);
-
-        //Round count
-        roundCount ++; 
-
-        // Play a round and display its result
-        let roundResult = playRound(playerPlay(), computerPlay());
-        console.log(roundResult);
-
-        // Score calculation
-        if (roundResult.includes("You win")){
-            playerScore ++;
-        } else if (roundResult.includes("You loose")){
-            computerScore ++;
-        }
-        // Display the live score count unless it is last round
-        while(roundCount < 6){
-            console.log(`The score is ${playerScore} for you and ${computerScore} for the computer!`);
-            break;
-        }
-    }
-
-    // Lign separation before final score
-    console.log("\n");
-
-    //Final result display
-    if (playerScore > computerScore){
-        console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you won! :)`);
-    } else if (computerScore > playerScore){
-        console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you lost :(`);
-    } else {
-        console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, it's a tie :|`);
-    }
+        displayRounds(roundResult, roundCount);
+        });
+    });
 }
 
 // Computer random pick and return his choice
@@ -72,31 +51,6 @@ function computerPlay () {
     }
 }
 
-// Player function, return player's choice capitalized
-function playerPlay (){
-
-    while (true) {
-        // Prompt the player for his choice
-        let playerChoice = window.prompt("Choose Rock, Paper or Scissors");
-        
-        //Transformation of the player choice to a Capitalized format
-        let playerChoiceLowerCase = playerChoice.toLowerCase(); 
-        playerChoiceCapitalized = playerChoiceLowerCase.charAt(0).toUpperCase() + playerChoiceLowerCase.slice(1);            
-    
-        if (playerChoiceCapitalized == "Rock" ||
-            playerChoiceCapitalized == "Paper" ||
-            playerChoiceCapitalized == "Scissors") {
-                break;
-        } else {
-            console.log(`Please enter a valid choice`);
-        }
-    }
-    
-    // Console log of the player's choice
-    console.log(`You chose ${playerChoiceCapitalized}`);
-    return playerChoiceCapitalized;
-}
-
 // Play a round and return the result
 function playRound(playerSelection, computerSelection) {
     let result = null;
@@ -111,4 +65,13 @@ function playRound(playerSelection, computerSelection) {
         result = `You loose! ${computerSelection} beats ${playerSelection}`;  
     }
     return result;
+}
+
+// Display the choices and the results of each rounds
+function displayRounds(roundResult, roundCount) {
+    const resultDisplay = document.querySelector('#resultDisplay');
+    const content = document.createElement('p');
+    content.textContent = `Round ${roundCount}: ` + roundResult;
+    resultDisplay.appendChild(content);
+
 }
