@@ -14,53 +14,34 @@
 
     <div id="playFields">
         <div id="playerWeaponsContainer">
-
-            <h2 id="playerTitle">Player</h2>
-
-            <img class="playerWeaponImg" src="images/rock.png">
-            <img class="playerWeaponImg" src="images/paper.png">
-            <img class="playerWeaponImg" src="images/scissors.png">
+            <img class="playerWeaponImg" id="Rock" src="images/rock.png">
+            <img class="playerWeaponImg" id="Paper" src="images/paper.png">
+            <img class="playerWeaponImg" id="Scissors" src="images/scissors.png">
         </div>
 
         <div id="centerContainer">
             <div id="instructions">
                 <p class="centerContent">Play rock paper scissors against the computer</p>
                 <p class="centerContent">The first player to reach 5 points wins !</p>
-                <button class="centerContent">Start a game</button>
+                <button class="centerContent" id="start">Start a game</button>
             </div>
          
-            <div id="roundContent">
-                <p class="centerContent"> Round 1</p>
-                <p class="centerContent">You win! Paper Beats Rock!</p>
-            </div>
+            <div id="roundContent"></div>
 
             <div id="scoreDisplay">
                 <p class="centerContent">Score</p>
-                <p class="centerContent"> 0 - 0</p>
-
-
+                <p class="centerContent" id="liveScore"> 0 - 0</p>
             </div>
            
         </div>
 
         <div id="cpuWeaponsContainer">
 
-            <h2 id="computerTitle">Computer</h2>
-
             <img class="cpuWeaponImg" src="images/rock.png">
             <img class="cpuWeaponImg" src="images/paper.png">
             <img class="cpuWeaponImg" src="images/scissors.png">
         </div>
-
- 
-
- 
-
-
     </div>
-
-
-    <div id="resultDisplay"></div>
 
 
     <script src="script.js"></script>

@@ -5,23 +5,8 @@ h1 {
     font-size: larger;
 }
 
-#playerTitle {
-    position: absolute;
-    background-color: rgb(171, 180, 39);
-    margin-left: 350px;
-    margin-top: -280px;
-}
-
-#computerTitle {
-    position: absolute;
-    background-color: rgb(180, 39, 98);
-    margin-left: -400px;
-    margin-top: -280px;
-}
-
-
 #playFields {
-    margin-top: 30px;t
+    margin-top: 30px;
     height: fit-content;
     background-color: coral;
     display: flex;
@@ -69,9 +54,14 @@ h1 {
     
 #roundContent {
     margin-top: 100px;
+    background-color: saddlebrown;
 }
 
 #scoreDisplay {
-    margin-top: 100px;
+
+
+
+    background-color: yellow;
+
 }
 

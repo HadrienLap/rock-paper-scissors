@@ -1,13 +1,6 @@
- // Welcome message
- console.log("Click 'Start a new game' to compete against the computer. The first player to reach 3 point wins!");
- 
- // Start a game if user clicks "Start a new game"
+// Start a game if user clicks "Start a new game"
 const start = document.querySelector('#start');
-start.onclick = () => {
-    game ();
-}
-
-
+start.onclick = () => game ();
 
 function game () {
     // Variables for the score calculation & round count
@@ -15,63 +8,79 @@ function game () {
     let computerScore = 0;
     let roundCount = 1;
 
+    // Play until a player reachs 5 points
+    while (playerScore < 5 || computerScore < 5) {
 
-
-    // Player choose a weapon and play a round
-    console.log('Choose your weapon');
-
-    const weapons = document.querySelectorAll('.controls');
-
-    weapons.forEach(button => {
-        button.addEventListener('click', (e) => {
-        let roundResult = playRound(button.id, computerPlay());
+        // Create and display Round number and ask to make a move
+        const roundContent = document.querySelector('#roundContent');
         
-        displayRounds(roundResult, roundCount);
-        });
-    });
-}
+        const liveRoundCount = document.createElement('p');
+        liveRoundCount.classList.add('centerContent');
+        liveRoundCount.textContent = `Round ${roundCount}`;
+        roundContent.appendChild(liveRoundCount);
 
-// Computer random pick and return his choice
-function computerPlay () {
+        const liveRoundResult = document.createElement('p');
+        liveRoundResult.classList.add('centerContent');
+        liveRoundResult.textContent = 'Make your move';
+        roundContent.appendChild(liveRoundResult);
 
-    // Computer randomly pick a number from 0 to 2, and return the computerRandomeChoice
-    // 0 = rock, 1 = paper, 2 = scissors
-    const computerRandomNumber = Math.floor(Math.random() * 3);
-    
-    switch (computerRandomNumber){
-        case 0 : 
-            console.log(`The computer chose Rock`);
-            return "Rock";
-        case 1 : 
-            console.log(`The computer chose Paper`);
-            return "Paper";
-        case 2 :
-            console.log(`The computer chose Scissors`);
-            return "Scissors";
+        // Player choose a weapon by clicking and call all functions to play a round
+        const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
+
+        playerWeaponChoice.forEach(playerWeaponImg => {
+            playerWeaponImg.addEventListener('click', (e) => {
+
+                // Play a round with the proper player and computer selections
+                let roundResult = playRound(e.srcElement.id, computerPlay());
+                
+                // Display the round result
+                document.getElementById("roundContent").lastChild.textContent = roundResult;
+
+                // Update the score
+                if (roundResult.includes("You win")){
+                    playerScore ++;
+                } else if (roundResult.includes("You loose")){
+                    computerScore ++;
+                }
+
+                // Display the score
+                document.getElementById("liveScore").textContent = playerScore + " - " + computerScore;
+      
+            });
+        }); 
     }
-}
-
-// Play a round and return the result
-function playRound(playerSelection, computerSelection) {
-    let result = null;
     
-    if (playerSelection == computerSelection){
-        result = `You both played ${computerSelection}, it's a draw!`;
-    } else if ((playerSelection == "Paper" && computerSelection == "Rock") ||
-                (playerSelection == "Rock" && computerSelection == "Scissors") ||
-                (playerSelection == "Scissors" && computerSelection == "Paper")) { 
-        result = `You win! ${playerSelection} beats ${computerSelection}`;      
-    } else {
-        result = `You loose! ${computerSelection} beats ${playerSelection}`;  
+    // Computer random pick and return his choice
+    function computerPlay () {
+
+        // Computer randomly pick a number from 0 to 2, and return the computerRandomeChoice
+        // 0 = rock, 1 = paper, 2 = scissors
+        const computerRandomNumber = Math.floor(Math.random() * 3);
+        
+        switch (computerRandomNumber){
+            case 0 : 
+                return "Rock";
+            case 1 : 
+                return "Paper";
+            case 2 :
+                return "Scissors";
+        }
     }
-    return result;
-}
-
-// Display the choices and the results of each rounds
-function displayRounds(roundResult, roundCount) {
-    const resultDisplay = document.querySelector('#resultDisplay');
-    const content = document.createElement('p');
-    content.textContent = `Round ${roundCount}: ` + roundResult;
-    resultDisplay.appendChild(content);
-
+    
+    // Play a round and return the result
+    function playRound(playerSelection, computerSelection) {
+        let result = null;
+        
+        if (playerSelection == computerSelection){
+            result = `You both played ${computerSelection}, it's a draw!`;
+        } else if ((playerSelection == "Paper" && computerSelection == "Rock") ||
+                    (playerSelection == "Rock" && computerSelection == "Scissors") ||
+                    (playerSelection == "Scissors" && computerSelection == "Paper")) { 
+            result = `You win! ${playerSelection} beats ${computerSelection}`;      
+        } else {
+            result = `You loose! ${computerSelection} beats ${playerSelection}`;  
+        }
+        return result;
+    }
+    
 }
