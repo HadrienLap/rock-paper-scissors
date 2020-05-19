@@ -1,14 +1,12 @@
 h1 {
     margin-top: 30px;
     text-align: center;
-    background-color: blue;
     font-size: larger;
 }
 
 #playFields {
     margin-top: 30px;
     height: fit-content;
-    background-color: coral;
     display: flex;
     justify-content: space-between;
 }
@@ -20,7 +18,6 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: gray;
 }
 
 #cpuWeaponsContainer {
@@ -31,7 +28,6 @@ h1 {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-end;
-    background-color: gray;
 }
 
 .playerWeaponImg, .cpuWeaponImg {
@@ -45,23 +41,26 @@ h1 {
 
 #centerContainer {
     text-align: center;
-    background-color: darkkhaki;
+    width: 360px;
+    
 }
 
 .centerContent {
+
     margin-top: 20px;
+}
+
+#instruction {
+    margin-top: 50px;
+
 }
     
 #roundContent {
     margin-top: 100px;
-    background-color: saddlebrown;
 }
 
 #scoreDisplay {
-
-
-
-    background-color: yellow;
+    margin-top: 150px;
 
 }
 
