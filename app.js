@@ -1,59 +1,64 @@
-// Start a game if user clicks "Start a new game"
-const start = document.querySelector('#start');
-start.onclick = () => game ();
+game();
 
 function game () {
     // Variables for the score calculation & round count
     let playerScore = 0;
     let computerScore = 0;
-    let roundCount = 0;
+    let roundCount = 1;
 
-        // Remove the content of #roundContent
-        let roundContent = document.querySelector('#roundContent');
-        
-        while (roundContent.lastChild) {
-            roundContent.removeChild(roundContent.lastChild);
-        }
+    // Player choose a weapon by clicking and call all functions to play a round
+    const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
 
-        // Create and display Round number and ask to make a move
-        const liveRoundCount = document.createElement('p');
-        liveRoundCount.classList.add('centerContent');
-        liveRoundCount.textContent = `Round ${++ roundCount}`;
-        roundContent.appendChild(liveRoundCount);
+    playerWeaponChoice.forEach(playerWeaponImg => {
+        playerWeaponImg.addEventListener('click', (e) => {
 
-        const liveRoundResult = document.createElement('p');
-        liveRoundResult.classList.add('centerContent');
-        liveRoundResult.textContent = 'Make your move';
-        roundContent.appendChild(liveRoundResult);
-    
-     
-        // Player choose a weapon by clicking and call all functions to play a round
-        const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
+            // Play a round with the proper player and computer selections
+            let roundResult = playRound(e.srcElement.id, computerPlay());
 
-        playerWeaponChoice.forEach(playerWeaponImg => {
-            playerWeaponImg.addEventListener('click', (e) => {
+            // Display the round number & round Result
+            document.getElementById("roundContentFirst").textContent = `Round ${roundCount ++}`;
+            document.getElementById("roundContent").lastChild.textContent = roundResult;
 
-                // Play a round with the proper player and computer selections
-                let roundResult = playRound(e.srcElement.id, computerPlay());
+            // Update the score
+            if (roundResult.includes("You win")){
+                playerScore ++;
+            } else if (roundResult.includes("You loose")){
+                computerScore ++;
+            }
 
-                // Display the round number 
-                document.getElementById("roundContent").firstChild.textContent = `Round ${roundCount ++}`;
-                
-                // Display the round result
-                document.getElementById("roundContent").lastChild.textContent = roundResult;
+            // Display the score
+            document.getElementById("liveScore").textContent = playerScore + " - " + computerScore;
 
-                // Update the score
-                if (roundResult.includes("You win")){
-                    playerScore ++;
-                } else if (roundResult.includes("You loose")){
-                    computerScore ++;
+            if (playerScore == 3 || computerScore == 3) {
+
+                //Final result display
+                if (playerScore > computerScore){
+                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you won! :)`);
+                } else if (computerScore > playerScore){
+                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you lost :(`);
+                } else {
+                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, it's a tie :|`);
                 }
+        
+        
+            }
+    
+        });
+    }); 
 
-                // Display the score
-                document.getElementById("liveScore").textContent = playerScore + " - " + computerScore;
-      
-            });
-        }); 
+    
+
+
+
+        
+
+
+
+    
+    
+  
+
+
     
     
     // Computer random pick and return his choice
