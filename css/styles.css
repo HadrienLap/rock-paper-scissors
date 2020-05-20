@@ -2,18 +2,19 @@
 
 body {
     font-family: ASAP, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     color: #292c34;
+    background-color: rgb(234, 239, 247);
 }
 
 h1 {
     margin-top: 30px;
     text-align: center;
-    font-size: larger;
+    font-size: 50px;
 }
 
 #playFields {
-    margin-top: 30px;
+    margin-top: 25px;
     height: fit-content;
     display: flex;
     justify-content: space-between;
@@ -103,6 +104,7 @@ h1 {
 #roundContent {
     margin-top: 100px;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 #scoreDisplay {

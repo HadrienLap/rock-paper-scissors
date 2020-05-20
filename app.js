@@ -22,7 +22,7 @@ function game () {
             
             // Display the round number & round Result
             document.getElementById("roundContentFirst").textContent = `Round ${roundCount ++}`;
-            document.getElementById("roundContent").lastChild.textContent = roundResult;
+            document.getElementById("roundContentSecond").innerHTML = roundResult;
 
             // Update the score
             if (roundResult.includes("You Win")){
@@ -63,13 +63,13 @@ function playRound(playerSelection, computerSelection) {
     let result = null;
     
     if (playerSelection == computerSelection){
-        result = `You both played ${computerSelection}` + "<br>" + "It's a Draw!";
+        result = `You both played ${computerSelection} <br> It's a Draw!`;
     } else if ((playerSelection == "Paper" && computerSelection == "Rock") ||
                 (playerSelection == "Rock" && computerSelection == "Scissors") ||
                 (playerSelection == "Scissors" && computerSelection == "Paper")) { 
-        result = `${playerSelection} beats ${computerSelection}` + "<br>" + 'You Win!';      
+        result = `${playerSelection} beats ${computerSelection} <br> You Win!`;      
     } else {
-        result = `${computerSelection} beats ${playerSelection}` + "<br>" + 'You Loose!';
+        result = `${computerSelection} beats ${playerSelection} <br> You Loose!`;
     }
     return result;
 }
