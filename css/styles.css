@@ -3,7 +3,7 @@
 body {
     font-family: ASAP, sans-serif;
     font-size: 25px;
-    color: #eaf0ff;
+    color: white;
     background-color: #1e222b;
     line-height: 1.4;
 }
@@ -13,8 +13,8 @@ h1 {
     padding-bottom: 15px;
     text-align: center;
     font-size: 50px;
-    color: #212733;
-    background-color: #eaf0ff;
+    color: #2b364f;
+    background-color: white;
     font-weight: bold;
 }
 
