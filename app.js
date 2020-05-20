@@ -1,14 +1,20 @@
 game();
 
+
+
 function game () {
+    // Variables for the DOM
+    const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
+    const roundContentFirst = document.getElementById("roundContentFirst");
+    const roundContentSecond = document.getElementById("roundContentSecond");
+    const liveScore = document.getElementById("liveScore");
+
     // Variables for the score calculation & round count
     let playerScore = 0;
     let computerScore = 0;
     let roundCount = 1;
 
     // Player choose a weapon by clicking and call all functions to play a round
-    const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
-
     playerWeaponChoice.forEach(playerWeaponImg => {
         playerWeaponImg.addEventListener('click', (e) => {
 
@@ -21,8 +27,8 @@ function game () {
             animationCPUimage (`cpu${computerPick}`);
             
             // Display the round number & round Result
-            document.getElementById("roundContentFirst").textContent = `Round ${roundCount ++}`;
-            document.getElementById("roundContentSecond").innerHTML = roundResult;
+            roundContentFirst.textContent = `Round ${roundCount ++}`;
+            roundContentSecond.innerHTML = roundResult;
 
             // Update the score
             if (roundResult.includes("You Win")){
@@ -32,18 +38,24 @@ function game () {
             }
 
             // Display the score
-            document.getElementById("liveScore").textContent = playerScore + " - " + computerScore;
+            liveScore.textContent = playerScore + " - " + computerScore;
 
+            //Final result display
             if (playerScore == 3 || computerScore == 3) {
 
-                //Final result display
                 if (playerScore > computerScore){
-                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you won! :)`);
-                } else if (computerScore > playerScore){
-                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, you lost :(`);
+                    roundContentFirst.textContent = 'You Won !';
+                    roundContentSecond.textContent = `The final score is ${playerScore} for you and ${computerScore} for the computer`;
                 } else {
-                    console.log(`The final score is ${playerScore} for you and ${computerScore} for the computer, it's a tie :|`);
+                    roundContentFirst.textContent = 'You Lost !';
+                    roundContentSecond.textContent = `The final score is ${playerScore} for you and ${computerScore} for the computer`;
                 }
+                
+                // Reset the scores and the roundCount to play another game
+                playerScore = 0;
+                computerScore = 0;
+                roundCount = 1;
+              
             }
         });
     }); 
@@ -76,7 +88,7 @@ function playRound(playerSelection, computerSelection) {
 
 // Player image animation when click
 function animationPlayerimage (imageID) {
-    const imageToAnimate = document.getElementById(`${imageID}`)
+    const imageToAnimate = document.getElementById(`${imageID}`);
     imageToAnimate.classList.add('playerImgAnimation');
     imageToAnimate.addEventListener( "animationend",  function() {
         imageToAnimate.classList.remove("playerImgAnimation");    
@@ -85,9 +97,10 @@ function animationPlayerimage (imageID) {
 
 // Computer image animation
 function animationCPUimage (imageID) {
-    const imageToAnimate = document.getElementById(`${imageID}`)
+    const imageToAnimate = document.getElementById(`${imageID}`);
     imageToAnimate.classList.add('computerImgAnimation');
     imageToAnimate.addEventListener( "animationend",  function() {
         imageToAnimate.classList.remove("computerImgAnimation");    
     } );
 }
+
