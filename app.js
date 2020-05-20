@@ -1,7 +1,5 @@
 game();
 
-
-
 function game () {
     // Variables for the DOM
     const playerWeaponChoice = document.querySelectorAll('.playerWeaponImg');
@@ -50,12 +48,10 @@ function game () {
                     roundContentFirst.textContent = 'You Lost !';
                     roundContentSecond.textContent = `The final score is ${playerScore} for you and ${computerScore} for the computer`;
                 }
-                
                 // Reset the scores and the roundCount to play another game
                 playerScore = 0;
                 computerScore = 0;
                 roundCount = 1;
-              
             }
         });
     }); 
